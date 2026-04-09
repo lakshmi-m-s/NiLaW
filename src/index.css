@@ -197,6 +197,89 @@
       background-position: 40% 50%;
     }
   }
+
+  /* Hero: desktop/tablet names — light sparkle sweep on white */
+  .hero-names-desktop-sparkle {
+    background-image: linear-gradient(
+      105deg,
+      #ebe8e4 0%,
+      #ffffff 16%,
+      #faf8f5 28%,
+      #fff2d8 42%,
+      #ffffff 48%,
+      #fff9f0 50%,
+      #ffffff 52%,
+      #fdeecf 60%,
+      #ffffff 76%,
+      #e8e5e1 100%
+    );
+    background-size: 280% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: hero-desktop-sparkle-shift 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 18px rgba(0, 0, 0, 0.42))
+      drop-shadow(0 1px 2px rgba(0, 0, 0, 0.32));
+  }
+
+  @keyframes hero-desktop-sparkle-shift {
+    0%,
+    100% {
+      background-position: 6% 50%;
+    }
+    50% {
+      background-position: 94% 50%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-names-desktop-sparkle {
+      animation: none;
+      background-position: 45% 50%;
+    }
+  }
+
+  /* Invite section — bold copy with gold “sparkle” sweep */
+  .invite-line-sparkle {
+    font-weight: 700;
+    background-image: linear-gradient(
+      100deg,
+      #2a241c 0%,
+      #3d342b 20%,
+      #5c4f3d 36%,
+      #9a8350 44%,
+      #e8d9b8 49%,
+      #f5edd8 50.5%,
+      #e8d9b8 52%,
+      #9a8350 58%,
+      #3d342b 78%,
+      #2a241c 100%
+    );
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: invite-sparkle-shift 4.2s ease-in-out infinite;
+    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.45))
+      drop-shadow(0 2px 6px rgba(42, 36, 28, 0.08));
+  }
+
+  @keyframes invite-sparkle-shift {
+    0%,
+    100% {
+      background-position: 8% 50%;
+    }
+    50% {
+      background-position: 92% 50%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .invite-line-sparkle {
+      animation: none;
+      background-position: 50% 50%;
+    }
+  }
 }
 
 @layer utilities {

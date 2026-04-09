@@ -37,8 +37,8 @@ export function Hero() {
               Nikhil
             </span>
           </span>
-          <span className="hidden text-balance text-[clamp(2rem,8.5vw,4.85rem)] leading-[1.06] tracking-[0.03em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.35),0_1px_2px_rgba(0,0,0,0.25)] sm:inline sm:tracking-[0.04em]">
-            Lakshmi <span className="font-normal italic text-white/95">&</span> Nikhil
+          <span className="hero-names-desktop-sparkle hidden text-balance text-[clamp(2rem,8.5vw,4.85rem)] leading-[1.06] tracking-[0.03em] sm:inline-block sm:translate-y-[1cm] sm:tracking-[0.04em]">
+            Lakshmi <span className="font-normal italic">&</span> Nikhil
           </span>
         </p>
         <div className="mt-9 flex w-full translate-y-[3cm] flex-col items-center gap-8 sm:mt-14 sm:gap-10">
