@@ -38,6 +38,23 @@
     );
   }
 
+  /* Bridge invite → ceremony — soft pearl with a whisper of gold toward ceremony */
+  .section-gradient-countdown {
+    background-color: #f4efe6;
+    background-image:
+      radial-gradient(
+        ellipse 90% 55% at 50% 0%,
+        rgba(201, 174, 106, 0.08) 0%,
+        transparent 50%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(241, 235, 226, 1) 0%,
+        rgba(246, 242, 236, 0.98) 42%,
+        rgba(250, 248, 244, 1) 100%
+      );
+  }
+
   .section-gradient-ceremony {
     background-color: #f4efe6;
     background-image:
