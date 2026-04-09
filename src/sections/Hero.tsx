@@ -25,16 +25,28 @@ export function Hero() {
       />
 
       <div className="relative z-10 flex w-full max-w-[min(100%,22rem)] translate-y-[6cm] flex-col items-center px-4 pb-[max(4rem,calc(env(safe-area-inset-bottom)+1.5rem))] pt-[max(1.25rem,env(safe-area-inset-top))] opacity-0 animate-hero-in sm:max-w-[min(100%,26rem)] sm:px-6 sm:pb-[max(4.5rem,calc(env(safe-area-inset-bottom)+1.75rem))] sm:pt-[max(1.5rem,env(safe-area-inset-top))] sm:px-8 md:max-w-3xl">
-        <p className="-translate-y-[calc(0.5rem+2.45cm)] text-balance font-display text-[clamp(2rem,8.5vw,4.85rem)] font-medium leading-[1.06] tracking-[0.03em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.35),0_1px_2px_rgba(0,0,0,0.25)] sm:-translate-y-[calc(1.25rem+3cm)] sm:tracking-[0.04em] md:-translate-y-[calc(1.75rem+3cm)]">
-          Lakshmi <span className="font-normal italic text-white/95">&</span>{" "}
-          Nikhil
+        <p className="-translate-y-[calc(0.5rem+2.45cm)] font-display font-medium sm:-translate-y-[calc(1.25rem+3cm)] md:-translate-y-[calc(1.75rem+3cm)]">
+          <span className="flex flex-col items-center gap-1.5 leading-[1.06] tracking-[0.03em] sm:hidden -translate-y-[2cm]">
+            <span className="hero-names-mobile-shimmer text-[clamp(3rem,14.5vw,6.5rem)]">
+              Lakshmi
+            </span>
+            <span className="hero-names-mobile-shimmer font-normal italic text-[clamp(2.75rem,12.5vw,5.75rem)]">
+              &
+            </span>
+            <span className="hero-names-mobile-shimmer text-[clamp(3rem,14.5vw,6.5rem)]">
+              Nikhil
+            </span>
+          </span>
+          <span className="hidden text-balance text-[clamp(2rem,8.5vw,4.85rem)] leading-[1.06] tracking-[0.03em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.35),0_1px_2px_rgba(0,0,0,0.25)] sm:inline sm:tracking-[0.04em]">
+            Lakshmi <span className="font-normal italic text-white/95">&</span> Nikhil
+          </span>
         </p>
-        <div className="mt-9 flex w-full translate-y-[3cm] flex-col items-center gap-7 sm:mt-14 sm:gap-10">
-          <p className="max-w-[min(100%,20rem)] text-balance font-display text-[clamp(1rem,3.85vw,1.75rem)] font-bold uppercase tracking-[0.2em] text-[#f2d66a] [text-shadow:0_2px_10px_rgba(0,0,0,0.78),0_1px_3px_rgba(0,0,0,0.65),0_0_36px_rgba(232,197,71,0.55),0_0_64px_rgba(232,197,71,0.28)] sm:max-w-none sm:tracking-[0.28em] md:tracking-[0.32em]">
+        <div className="mt-9 flex w-full translate-y-[3cm] flex-col items-center gap-8 sm:mt-14 sm:gap-10">
+          <p className="max-w-[min(100%,24rem)] text-balance font-display text-[clamp(1.5rem,5.5vw,2.25rem)] font-bold uppercase leading-[1.12] tracking-[0.2em] text-[#f2d66a] [text-shadow:0_2px_10px_rgba(0,0,0,0.78),0_1px_3px_rgba(0,0,0,0.65),0_0_36px_rgba(232,197,71,0.55),0_0_64px_rgba(232,197,71,0.28)] sm:max-w-none sm:text-[clamp(1.25rem,4.85vw,2.125rem)] sm:leading-[1.06] sm:tracking-[0.28em] md:tracking-[0.32em]">
             Save the Date
           </p>
-          <div className="flex w-full flex-col items-center gap-3 sm:gap-4">
-            <p className="font-sans text-[clamp(0.9375rem,3.05vw,1.3125rem)] font-semibold tracking-[0.16em] text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.45),0_4px_20px_rgba(0,0,0,0.35),0_10px_36px_rgba(0,0,0,0.22)] sm:tracking-[0.2em] md:tracking-[0.24em]">
+          <div className="flex w-full flex-col items-center gap-3.5 sm:gap-4">
+            <p className="font-sans text-[clamp(1.1875rem,3.45vw,1.3125rem)] font-semibold leading-[1.45] tracking-[0.16em] text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.45),0_4px_20px_rgba(0,0,0,0.35),0_10px_36px_rgba(0,0,0,0.22)] sm:text-[clamp(0.9375rem,3.05vw,1.3125rem)] sm:leading-normal sm:tracking-[0.2em] md:tracking-[0.24em]">
               April 26, 2026
             </p>
             <p className="font-sans text-[clamp(0.75rem,2.35vw,0.9375rem)] font-semibold tracking-[0.2em] text-white/92 [text-shadow:0_1px_3px_rgba(0,0,0,0.5),0_4px_18px_rgba(0,0,0,0.28)] sm:tracking-[0.24em] md:text-[1rem] md:tracking-[0.28em]">
