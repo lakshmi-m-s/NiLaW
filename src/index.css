@@ -7,10 +7,16 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    touch-action: pan-y;
   }
 
   body {
     @apply text-charcoal font-sans antialiased;
+    /* Clip horizontal overflow at the document level — avoids overflow-x on <main>,
+       which makes main the scroll container on mobile and breaks normal touch scrolling on Android. */
+    overflow-x: hidden;
+    /* Vertical pan only — single-finger scroll; pinch-zoom disabled via viewport + no pinch-zoom here */
+    touch-action: pan-y;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
     -webkit-tap-highlight-color: transparent;

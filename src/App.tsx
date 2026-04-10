@@ -8,7 +8,7 @@ import { Footer } from "./sections/Footer";
 
 export default function App() {
   return (
-    <main className="min-h-screen min-h-[100dvh] w-full min-w-0 overflow-x-hidden overscroll-y-none">
+    <main className="min-h-screen min-h-[100dvh] w-full min-w-0">
       <Hero />
       <InviteMessage />
       <WeddingCountdown />
