@@ -16,7 +16,7 @@ export function WeddingGathering() {
           <div className="relative mx-auto mt-6 w-full max-w-52 overflow-hidden rounded-lg border border-gold/20 bg-pearl/60 shadow-[0_8px_32px_-12px_rgba(26,22,18,0.12)] sm:mt-8 sm:max-w-60 md:max-w-64">
             <div className="aspect-[4/3] w-full">
               <img
-                src="/auditorium.jpg"
+                src={`${import.meta.env.BASE_URL}auditorium.jpg`}
                 alt="Royal Convention Centre, Marampally"
                 className="h-full w-full object-cover object-center"
                 loading="lazy"

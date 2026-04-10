@@ -3,7 +3,7 @@ export function Hero() {
     <header className="relative isolate flex min-h-[100svh] min-h-[100dvh] w-full min-w-0 flex-col items-center justify-center overflow-x-hidden text-center">
       {/* Single image fills the hero — no letterboxing or extra vertical space */}
       <img
-        src="/hero.jpg"
+        src={`${import.meta.env.BASE_URL}hero.jpg`}
         alt=""
         className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
         decoding="async"
