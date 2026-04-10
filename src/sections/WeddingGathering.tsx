@@ -10,7 +10,7 @@ export function WeddingGathering() {
           <p className="text-balance font-sans text-[0.9375rem] font-light leading-[1.85] text-charcoal/[0.78] sm:text-[1.0625rem] md:text-lg md:leading-[1.9]">
             Followed by a traditional wedding ceremony and gathering at
           </p>
-          <p className="mt-6 text-balance font-serif text-[1.3125rem] font-normal leading-snug tracking-[0.015em] text-charcoal sm:mt-10 sm:text-[1.75rem] md:text-[2rem]">
+          <p className="mt-6 text-balance font-serif text-[1.3125rem] font-bold leading-snug tracking-[0.015em] text-gold sm:mt-10 sm:text-[1.75rem] md:text-[2rem]">
             Royal Convention Centre, Marampally
           </p>
           <p className="mt-4 font-sans text-[0.9375rem] font-light tracking-[0.04em] text-charcoal/58 sm:mt-5 sm:text-base">

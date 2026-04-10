@@ -8,8 +8,8 @@ export function Ceremony() {
           <h2 className="font-serif text-[1.625rem] font-normal leading-tight tracking-[0.02em] text-charcoal sm:text-[2.125rem] md:text-[2.5rem]">
             Thalikett
           </h2>
-          <p className="mt-6 font-sans text-[0.9375rem] font-light leading-[1.75] text-charcoal/[0.82] sm:mt-10 sm:text-[1.0625rem] md:text-lg md:leading-[1.8]">
-            Sree Krishna Temple Guruvayur
+          <p className="mt-6 text-balance font-serif text-[1.3125rem] font-bold leading-snug tracking-[0.015em] text-gold sm:mt-10 sm:text-[1.75rem] md:text-[2rem]">
+            Guruvayur Sree Krishna Temple
           </p>
           <p className="mt-4 font-sans text-[0.9375rem] font-light tracking-[0.04em] text-charcoal/58 sm:mt-5 sm:text-base">
             Muhurtham · 6:00 AM – 7:00 AM
@@ -18,7 +18,7 @@ export function Ceremony() {
             <div className="aspect-[4/3] w-full">
               <img
                 src={`${import.meta.env.BASE_URL}temple.jpg`}
-                alt="Sree Krishna Temple, Guruvayur"
+                alt="Guruvayur Sree Krishna Temple"
                 className="h-full w-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
