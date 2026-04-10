@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply text-charcoal font-sans antialiased;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    -webkit-tap-highlight-color: transparent;
+    background-color: #f4efe6;
+    background-image: linear-gradient(
+      168deg,
+      #faf6ef 0%,
+      #f2e9dd 36%,
+      #f6efe6 68%,
+      #e8dfd0 100%
+    );
+  }
+}
+
+@layer components {
+  /* Soft radial + linear stacks — pearl / champagne / whisper of gold */
+  /* Bridge between hero and ceremony — soft pearl */
+  .section-gradient-invite {
+    background-color: #f6f2eb;
+    background-image: linear-gradient(
+      180deg,
+      rgba(250, 246, 239, 0.98) 0%,
+      rgba(244, 239, 230, 0.95) 48%,
+      rgba(241, 235, 226, 1) 100%
+    );
+  }
+
+  /* Bridge invite → ceremony — soft pearl with a whisper of gold toward ceremony */
+  .section-gradient-countdown {
+    background-color: #f4efe6;
+    background-image:
+      radial-gradient(
+        ellipse 90% 55% at 50% 0%,
+        rgba(201, 174, 106, 0.08) 0%,
+        transparent 50%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(241, 235, 226, 1) 0%,
+        rgba(246, 242, 236, 0.98) 42%,
+        rgba(250, 248, 244, 1) 100%
+      );
+  }
+
+  .section-gradient-ceremony {
+    background-color: #f4efe6;
+    background-image:
+      radial-gradient(
+        ellipse 95% 65% at 50% 0%,
+        rgba(201, 174, 106, 0.1) 0%,
+        transparent 52%
+      ),
+      linear-gradient(
+        168deg,
+        #faf8f4 0%,
+        #f1e8dc 42%,
+        rgba(246, 241, 234, 0.92) 100%
+      );
+  }
+
+  /* Layered wash on Reveal panels — sits on top of section gradients (ceremony, gathering, …) */
+  .reveal-panel {
+    border-radius: 1.125rem;
+    padding: clamp(1rem, 2.75vw, 1.5rem) clamp(0.875rem, 2.5vw, 1.5rem);
+    background-color: rgba(252, 249, 244, 0.55);
+    background-image:
+      radial-gradient(
+        ellipse 85% 75% at 15% 10%,
+        rgba(201, 174, 106, 0.14) 0%,
+        transparent 58%
+      ),
+      radial-gradient(
+        ellipse 75% 65% at 92% 88%,
+        rgba(228, 212, 188, 0.45) 0%,
+        transparent 55%
+      ),
+      linear-gradient(
+        152deg,
+        rgba(255, 253, 250, 0.92) 0%,
+        rgba(240, 228, 214, 0.35) 48%,
+        rgba(247, 241, 232, 0.88) 100%
+      );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      0 12px 40px -18px rgba(26, 22, 18, 0.08);
+    border: 1px solid rgba(201, 174, 106, 0.12);
+  }
+
+  .section-gradient-gathering {
+    background-color: #f2ebe3;
+    background-image:
+      radial-gradient(
+        ellipse 70% 50% at 85% 15%,
+        rgba(184, 154, 82, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 60% 45% at 10% 85%,
+        rgba(235, 227, 212, 0.65) 0%,
+        transparent 55%
+      ),
+      linear-gradient(195deg, #faf6ef 0%, #ebe3d4 38%, #f5efe8 100%);
+  }
+
+  .section-gradient-bride-groom {
+    background-color: #f6f1ea;
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(250, 246, 239, 0.97) 0%,
+        rgba(244, 239, 230, 0.98) 48%,
+        rgba(235, 227, 212, 0.45) 100%
+      ),
+      radial-gradient(
+        ellipse 80% 55% at 50% 100%,
+        rgba(201, 174, 106, 0.06) 0%,
+        transparent 58%
+      );
+  }
+
+  /* Soft blush–champagne wash for the love tagline — related to .reveal-panel, warmer / more romantic */
+  .love-tagline-wash {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    max-width: min(100%, 42rem);
+    border-radius: 9999px;
+    padding: clamp(0.75rem, 2.2vw, 1.125rem) clamp(1.25rem, 4vw, 2.75rem);
+    background-color: rgba(255, 251, 248, 0.72);
+    background-image:
+      radial-gradient(
+        ellipse 95% 100% at 50% 0%,
+        rgba(224, 186, 178, 0.18) 0%,
+        transparent 58%
+      ),
+      radial-gradient(
+        ellipse 70% 80% at 0% 50%,
+        rgba(201, 174, 106, 0.1) 0%,
+        transparent 52%
+      ),
+      radial-gradient(
+        ellipse 70% 80% at 100% 50%,
+        rgba(218, 198, 210, 0.12) 0%,
+        transparent 52%
+      ),
+      linear-gradient(
+        168deg,
+        rgba(255, 253, 251, 0.96) 0%,
+        rgba(245, 232, 228, 0.42) 42%,
+        rgba(250, 244, 238, 0.94) 100%
+      );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      0 10px 36px -16px rgba(42, 28, 32, 0.07);
+    border: 1px solid rgba(214, 186, 178, 0.22);
+  }
+
+  .section-gradient-footer {
+    background-color: #efe8de;
+    background-image: linear-gradient(
+      180deg,
+      rgba(250, 246, 239, 0.55) 0%,
+      rgba(235, 227, 212, 0.5) 45%,
+      rgba(228, 218, 204, 0.65) 100%
+    );
+  }
+
+  /* Hero: mobile names — beige + moving highlight (hero stack only) */
+  .hero-names-mobile-shimmer {
+    background-image: linear-gradient(
+      110deg,
+      #b8a080 0%,
+      #e8dfd0 22%,
+      #faf6ef 42%,
+      #f0e8da 58%,
+      #d4c4a8 78%,
+      #b8a080 100%
+    );
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: hero-name-shimmer 3.2s ease-in-out infinite;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.82))
+      drop-shadow(0 0 1px rgba(0, 0, 0, 0.55));
+  }
+
+  @keyframes hero-name-shimmer {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-names-mobile-shimmer {
+      animation: none;
+      background-position: 40% 50%;
+    }
+  }
+
+  /* Hero: desktop/tablet names — light sparkle sweep on white */
+  .hero-names-desktop-sparkle {
+    background-image: linear-gradient(
+      105deg,
+      #ebe8e4 0%,
+      #ffffff 16%,
+      #faf8f5 28%,
+      #fff2d8 42%,
+      #ffffff 48%,
+      #fff9f0 50%,
+      #ffffff 52%,
+      #fdeecf 60%,
+      #ffffff 76%,
+      #e8e5e1 100%
+    );
+    background-size: 280% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: hero-desktop-sparkle-shift 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 18px rgba(0, 0, 0, 0.42))
+      drop-shadow(0 1px 2px rgba(0, 0, 0, 0.32));
+  }
+
+  @keyframes hero-desktop-sparkle-shift {
+    0%,
+    100% {
+      background-position: 6% 50%;
+    }
+    50% {
+      background-position: 94% 50%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-names-desktop-sparkle {
+      animation: none;
+      background-position: 45% 50%;
+    }
+  }
+
+  /* Invite section — bold copy with gold “sparkle” sweep */
+  .invite-line-sparkle {
+    font-weight: 700;
+    background-image: linear-gradient(
+      100deg,
+      #2a241c 0%,
+      #3d342b 20%,
+      #5c4f3d 36%,
+      #9a8350 44%,
+      #e8d9b8 49%,
+      #f5edd8 50.5%,
+      #e8d9b8 52%,
+      #9a8350 58%,
+      #3d342b 78%,
+      #2a241c 100%
+    );
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: invite-sparkle-shift 4.2s ease-in-out infinite;
+    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.45))
+      drop-shadow(0 2px 6px rgba(42, 36, 28, 0.08));
+  }
+
+  @keyframes invite-sparkle-shift {
+    0%,
+    100% {
+      background-position: 8% 50%;
+    }
+    50% {
+      background-position: 92% 50%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .invite-line-sparkle {
+      animation: none;
+      background-position: 50% 50%;
+    }
+  }
+}
+
+@layer utilities {
+  .text-shadow-hero {
+    text-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.12),
+      0 4px 24px rgba(0, 0, 0, 0.28),
+      0 12px 48px rgba(0, 0, 0, 0.22);
+  }
+
+  .text-shadow-hero-soft {
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.18),
+      0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+}
