@@ -26,7 +26,7 @@ export function Hero() {
 
       <div className="relative z-10 flex w-full max-w-[min(100%,22rem)] translate-y-[6cm] flex-col items-center px-4 pb-[max(4rem,calc(env(safe-area-inset-bottom)+1.5rem))] pt-[max(1.25rem,env(safe-area-inset-top))] opacity-0 animate-hero-in sm:max-w-[min(100%,26rem)] sm:px-6 sm:pb-[max(4.5rem,calc(env(safe-area-inset-bottom)+1.75rem))] sm:pt-[max(1.5rem,env(safe-area-inset-top))] sm:px-8 md:max-w-3xl">
         <p className="-translate-y-[calc(0.5rem+2.45cm)] font-display font-medium sm:-translate-y-[calc(1.25rem+3cm)] md:-translate-y-[calc(1.75rem+3cm)]">
-          <span className="flex flex-col items-center gap-1.5 leading-[1.06] tracking-[0.03em] sm:hidden -translate-y-[2cm]">
+          <span className="flex flex-col items-center gap-1.5 leading-[1.06] tracking-[0.03em] sm:hidden -translate-y-[1cm]">
             <span className="hero-names-mobile-shimmer text-[clamp(3rem,14.5vw,6.5rem)]">
               Lakshmi
             </span>
