@@ -44,8 +44,7 @@ export function WeddingCountdown() {
             id="countdown-heading"
             className="mt-4 font-serif text-[1.5rem] font-normal leading-tight tracking-[0.02em] text-charcoal sm:mt-5 sm:text-[1.875rem] md:text-[2.125rem]"
           >
-            Until we say&nbsp;
-            <span className="italic text-gold">I do</span>
+            Until we tie the knot of forever
           </h2>
           <p className="mx-auto mt-3 max-w-md text-pretty font-sans text-[0.8125rem] font-light leading-relaxed text-charcoal/60 sm:text-[0.875rem]">
             A little clock for the heart — each moment brings us closer.
