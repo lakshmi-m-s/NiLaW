@@ -3,6 +3,7 @@ import { InviteMessage } from "./sections/InviteMessage";
 import { WeddingCountdown } from "./sections/WeddingCountdown";
 import { Ceremony } from "./sections/Ceremony";
 import { BrideGroom } from "./sections/BrideGroom";
+import { PhotoGallery } from "./sections/PhotoGallery";
 import { Footer } from "./sections/Footer";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       <WeddingCountdown />
       <Ceremony />
       <BrideGroom />
+      <PhotoGallery />
       <Footer />
     </main>
   );
