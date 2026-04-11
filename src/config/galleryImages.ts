@@ -7,7 +7,7 @@
  * While this array is empty, the gallery section is not rendered.
  */
 export const GALLERY_IMAGE_PATHS: readonly string[] = [
-  "gallery/01.jpg",
-  "gallery/02.jpg",
-  "gallery/03.jpg",
+  // "gallery/01.jpg",
+  // "gallery/02.jpg",
+  // "gallery/03.jpg",
 ];
