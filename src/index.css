@@ -343,18 +343,9 @@
     will-change: transform;
   }
 
-  /* Two concatenated copies of the sequence; -50% = one full pass (N ≥ 2). */
+  /* Repeated full cycles; -50% = one seamless loop (first half matches second). */
   .gallery-marquee-track--loop {
     animation-name: gallery-marquee-scroll;
-  }
-
-  /* Single image: two tiles; shift by exactly one tile + gap (matches w-40 + gap-4). */
-  .gallery-marquee-track--single {
-    animation-name: gallery-marquee-single;
-  }
-
-  .gallery-marquee-track:hover {
-    animation-play-state: paused;
   }
 
   .gallery-marquee-track--scroll-paused {
@@ -367,15 +358,6 @@
     }
     100% {
       transform: translate3d(-50%, 0, 0);
-    }
-  }
-
-  @keyframes gallery-marquee-single {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(calc(-10rem - 1rem), 0, 0);
     }
   }
 
