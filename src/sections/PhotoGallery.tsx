@@ -21,6 +21,25 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+const TILE_PX = 176;
+const MAX_BELT_SEGMENTS = 32;
+
+function segmentCountForWidth(shellWidth: number, pathCount: number): number {
+  if (pathCount === 0) return 0;
+  const segmentPx = pathCount * TILE_PX;
+  let segs = Math.max(2, Math.ceil((2 * shellWidth) / segmentPx));
+  if (segs % 2 !== 0) segs += 1;
+  return Math.min(segs, MAX_BELT_SEGMENTS);
+}
+
+function buildBeltFromCycles(paths: readonly string[], segmentCount: number): string[] {
+  const out: string[] = [];
+  for (let s = 0; s < segmentCount; s++) {
+    for (let i = 0; i < paths.length; i++) out.push(paths[i]);
+  }
+  return out;
+}
+
 function GalleryImg({ path, onError }: { path: string; onError: () => void }) {
   return (
     <div className="h-40 w-40 shrink-0 overflow-hidden rounded-lg border border-gold/20 bg-pearl/40 shadow-[0_8px_28px_-14px_rgba(26,22,18,0.1)]">
@@ -44,15 +63,39 @@ export function PhotoGallery() {
   const [paths, setPaths] = useState(configured);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  /** Two copies for seamless loop + scroll wrap (N ≥ 2); two tiles for N === 1 */
-  const beltPaths = useMemo(() => [...paths, ...paths], [paths]);
-
-  const durationSec = useMemo(
-    () => (paths.length === 1 ? 15 : paths.length * 7),
-    [paths.length]
+  const beltShellRef = useRef<HTMLDivElement>(null);
+  const [beltShellWidth, setBeltShellWidth] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : 1024
   );
 
-  const beltShellRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const el = beltShellRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => {
+      const w = entries[0]?.contentRect.width;
+      if (w > 0) setBeltShellWidth(w);
+    });
+    ro.observe(el);
+    setBeltShellWidth(el.clientWidth);
+    return () => ro.disconnect();
+  }, [prefersReducedMotion, paths.length]);
+
+  const beltSegmentCount = useMemo(
+    () => segmentCountForWidth(beltShellWidth, paths.length),
+    [beltShellWidth, paths.length]
+  );
+
+  const beltPaths = useMemo(
+    () => buildBeltFromCycles(paths, beltSegmentCount),
+    [paths, beltSegmentCount]
+  );
+
+  const durationSec = useMemo(
+    () => paths.length * 7 * (beltSegmentCount / 2),
+    [paths.length, beltSegmentCount]
+  );
+
   const scrollJumpingRef = useRef(false);
   const beltIdleTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const [beltScrollPaused, setBeltScrollPaused] = useState(false);
@@ -141,14 +184,14 @@ export function PhotoGallery() {
                 onPointerLeave={resumeBeltAnimation}
               >
                 <div
-                  className={`gallery-marquee-track ${
-                    paths.length === 1 ? "gallery-marquee-track--single" : "gallery-marquee-track--loop"
-                  }${beltScrollPaused ? " gallery-marquee-track--scroll-paused" : ""}`}
+                  className={`gallery-marquee-track gallery-marquee-track--loop${
+                    beltScrollPaused ? " gallery-marquee-track--scroll-paused" : ""
+                  }`}
                   style={{ animationDuration: `${durationSec}s` }}
                 >
                   {beltPaths.map((path, i) => (
                     <GalleryImg
-                      key={`belt-${path}-${i}`}
+                      key={`belt-${i}`}
                       path={path}
                       onError={() => dropPath(path)}
                     />
