@@ -306,8 +306,14 @@
 
   /* Photo gallery — infinite horizontal belt (duplicate strip + translate -50%) */
   .gallery-marquee-shell {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     width: 100%;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     mask-image: linear-gradient(
       to right,
       transparent,
@@ -322,6 +328,10 @@
       black 97%,
       transparent
     );
+  }
+
+  .gallery-marquee-shell::-webkit-scrollbar {
+    display: none;
   }
 
   .gallery-marquee-track {
@@ -345,6 +355,10 @@
 
   .gallery-marquee-track:hover {
     animation-play-state: paused;
+  }
+
+  .gallery-marquee-track--scroll-paused {
+    animation-play-state: paused !important;
   }
 
   @keyframes gallery-marquee-scroll {
@@ -378,8 +392,14 @@
     }
 
     .gallery-marquee-shell {
+      overflow: visible;
       mask-image: none;
       -webkit-mask-image: none;
+      scrollbar-width: none;
+    }
+
+    .gallery-marquee-shell::-webkit-scrollbar {
+      display: none;
     }
   }
 }
