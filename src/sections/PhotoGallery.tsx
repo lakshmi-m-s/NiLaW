@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Reveal } from "../components/Reveal";
 import { GALLERY_IMAGE_PATHS } from "../config/galleryImages";
 
@@ -53,7 +53,38 @@ export function PhotoGallery() {
   /** Two copies for seamless -50% loop (N ≥ 2); two tiles for N === 1 */
   const beltPaths = useMemo(() => [...paths, ...paths], [paths]);
 
-  const durationSec = paths.length === 1 ? 30 : paths.length * 14;
+  const durationSec = paths.length === 1 ? 15 : paths.length * 7;
+
+  const beltShellRef = useRef<HTMLDivElement>(null);
+  const beltIdleTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const [beltScrollPaused, setBeltScrollPaused] = useState(false);
+
+  const clearBeltIdleTimer = useCallback(() => {
+    if (beltIdleTimerRef.current) clearTimeout(beltIdleTimerRef.current);
+  }, []);
+
+  const scheduleBeltResume = useCallback(() => {
+    clearBeltIdleTimer();
+    beltIdleTimerRef.current = setTimeout(() => {
+      const el = beltShellRef.current;
+      if (el && el.scrollLeft === 0) setBeltScrollPaused(false);
+    }, 1800);
+  }, [clearBeltIdleTimer]);
+
+  const onBeltShellScroll = useCallback(() => {
+    const el = beltShellRef.current;
+    if (!el) return;
+    if (el.scrollLeft !== 0) {
+      clearBeltIdleTimer();
+      setBeltScrollPaused(true);
+    } else {
+      scheduleBeltResume();
+    }
+  }, [scheduleBeltResume, clearBeltIdleTimer]);
+
+  useEffect(() => {
+    return () => clearBeltIdleTimer();
+  }, [clearBeltIdleTimer]);
 
   return (
     <section className="section-gradient-invite border-y border-gold/10 px-4 py-16 sm:px-6 sm:py-20 md:px-12 md:py-28">
@@ -68,7 +99,7 @@ export function PhotoGallery() {
             </h2>
           </div>
 
-          <div className="reveal-panel mt-10 overflow-hidden py-4 sm:mt-12 sm:py-5 -mx-2 sm:-mx-3 md:mx-0">
+          <div className="reveal-panel mt-10 overflow-x-visible overflow-y-hidden py-4 sm:mt-12 sm:py-5 -mx-2 sm:-mx-3 md:mx-0">
             {prefersReducedMotion ? (
               <ul className="flex list-none flex-wrap justify-center gap-3 sm:gap-4 md:gap-5">
                 {paths.map((path, i) => (
@@ -78,11 +109,15 @@ export function PhotoGallery() {
                 ))}
               </ul>
             ) : (
-              <div className="gallery-marquee-shell -mx-1 sm:-mx-2">
+              <div
+                ref={beltShellRef}
+                className="gallery-marquee-shell -mx-1 sm:-mx-2"
+                onScroll={onBeltShellScroll}
+              >
                 <div
                   className={`gallery-marquee-track ${
                     paths.length === 1 ? "gallery-marquee-track--single" : "gallery-marquee-track--loop"
-                  }`}
+                  }${beltScrollPaused ? " gallery-marquee-track--scroll-paused" : ""}`}
                   style={{ animationDuration: `${durationSec}s` }}
                 >
                   {beltPaths.map((path, i) => (
