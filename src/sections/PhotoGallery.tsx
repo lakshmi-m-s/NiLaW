@@ -44,18 +44,16 @@ export function PhotoGallery() {
   const [paths, setPaths] = useState(configured);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  if (configured.length === 0) return null;
-  if (paths.length === 0) return null;
-
-  const dropPath = (path: string) =>
-    setPaths((prev) => prev.filter((p) => p !== path));
-
-  /** Two copies for seamless -50% loop (N ≥ 2); two tiles for N === 1 */
+  /** Two copies for seamless loop + scroll wrap (N ≥ 2); two tiles for N === 1 */
   const beltPaths = useMemo(() => [...paths, ...paths], [paths]);
 
-  const durationSec = paths.length === 1 ? 15 : paths.length * 7;
+  const durationSec = useMemo(
+    () => (paths.length === 1 ? 15 : paths.length * 7),
+    [paths.length]
+  );
 
   const beltShellRef = useRef<HTMLDivElement>(null);
+  const scrollJumpingRef = useRef(false);
   const beltIdleTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const [beltScrollPaused, setBeltScrollPaused] = useState(false);
 
@@ -71,9 +69,30 @@ export function PhotoGallery() {
     }, 1800);
   }, [clearBeltIdleTimer]);
 
+  const resumeBeltAnimation = useCallback(() => {
+    clearBeltIdleTimer();
+    const el = beltShellRef.current;
+    if (el) el.scrollLeft = 0;
+    setBeltScrollPaused(false);
+  }, [clearBeltIdleTimer]);
+
   const onBeltShellScroll = useCallback(() => {
     const el = beltShellRef.current;
-    if (!el) return;
+    if (!el || scrollJumpingRef.current) return;
+
+    const total = el.scrollWidth;
+    const loopW = total / 2;
+    if (loopW > 1 && el.scrollLeft >= loopW - 1) {
+      scrollJumpingRef.current = true;
+      let guard = 0;
+      while (el.scrollLeft >= loopW - 1 && guard++ < 24) {
+        el.scrollLeft -= loopW;
+      }
+      requestAnimationFrame(() => {
+        scrollJumpingRef.current = false;
+      });
+    }
+
     if (el.scrollLeft !== 0) {
       clearBeltIdleTimer();
       setBeltScrollPaused(true);
@@ -85,6 +104,12 @@ export function PhotoGallery() {
   useEffect(() => {
     return () => clearBeltIdleTimer();
   }, [clearBeltIdleTimer]);
+
+  if (configured.length === 0) return null;
+  if (paths.length === 0) return null;
+
+  const dropPath = (path: string) =>
+    setPaths((prev) => prev.filter((p) => p !== path));
 
   return (
     <section className="section-gradient-invite border-y border-gold/10 px-4 py-16 sm:px-6 sm:py-20 md:px-12 md:py-28">
@@ -113,6 +138,7 @@ export function PhotoGallery() {
                 ref={beltShellRef}
                 className="gallery-marquee-shell -mx-1 sm:-mx-2"
                 onScroll={onBeltShellScroll}
+                onPointerLeave={resumeBeltAnimation}
               >
                 <div
                   className={`gallery-marquee-track ${
