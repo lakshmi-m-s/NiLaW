@@ -21,7 +21,8 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-const TILE_PX = 176;
+/** Max tile stride (largest breakpoint + gap-4) for belt segment estimate. */
+const TILE_PX = 240;
 const MAX_BELT_SEGMENTS = 32;
 
 function segmentCountForWidth(shellWidth: number, pathCount: number): number {
@@ -42,7 +43,7 @@ function buildBeltFromCycles(paths: readonly string[], segmentCount: number): st
 
 function GalleryImg({ path, onError }: { path: string; onError: () => void }) {
   return (
-    <div className="h-40 w-40 shrink-0 overflow-hidden rounded-lg border border-gold/20 bg-pearl/40 shadow-[0_8px_28px_-14px_rgba(26,22,18,0.1)]">
+    <div className="h-52 w-52 shrink-0 overflow-hidden rounded-lg border border-gold/20 bg-pearl/40 shadow-[0_8px_28px_-14px_rgba(26,22,18,0.1)] sm:h-56 sm:w-56">
       <img
         src={gallerySrc(path)}
         alt=""
@@ -162,9 +163,6 @@ export function PhotoGallery() {
             <p className="font-sans text-[0.625rem] font-medium uppercase tracking-[0.32em] text-gold/95">
               Gallery
             </p>
-            <h2 className="mt-4 font-serif text-[1.625rem] font-normal leading-tight tracking-[0.02em] text-charcoal sm:mt-5 sm:text-[2rem] md:text-[2.25rem]">
-              Moments
-            </h2>
           </div>
 
           <div className="reveal-panel mt-10 overflow-x-visible overflow-y-hidden py-4 sm:mt-12 sm:py-5 -mx-2 sm:-mx-3 md:mx-0">
